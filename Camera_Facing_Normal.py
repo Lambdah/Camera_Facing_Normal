@@ -11,6 +11,20 @@ bl_info = {
 
 import bpy
 
+class RENDER_OT_CameraFacingNormal(bpy.types.Operator):
+    bl_label="Render the normal map facing the camera"
+    bl_idname="render.camera_facing_normal"
+    bl_options={'REGISTER', 'UNDO'}
+
+
+    @classmethod
+    def poll(cls, context):
+        pass
+
+    def execute(self, context):
+        pass
+
+
 class NORMALCAMERA_PT_Panel(bpy.types.Panel):
     bl_label = "Camera Facing Normal"
     bl_idname = "NORMALCAMERA_PT_Panel"
