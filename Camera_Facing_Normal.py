@@ -11,11 +11,21 @@ bl_info = {
 
 import bpy
 
+class NORMALCAMERA_PT_Panel(bpy.types.Panel):
+    bl_label = "Camera Facing Normal"
+    bl_idname = "NORMALCAMERA_PT_Panel"
+    bl_space_type = 'VIEW_3D'
+    bl_region_type = 'UI'
+    bl_category = 'Camera Facing Normal'
+
+    def draw(self, context):
+        layout = self.layout
+
 def register():
-    pass
+    bpy.utils.register_class(NORMALCAMERA_PT_Panel)
 
 def unregister():
-    pass
+    bpy.utils.unregister_class(NORMALCAMERA_PT_Panel)
 
 if __name__ == "__main__":
     register()
