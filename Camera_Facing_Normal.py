@@ -19,10 +19,10 @@ class RENDER_OT_CameraFacingNormal(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        pass
+        return context.space_data.type == 'VIEW_3D' and context.scene is not None
 
     def execute(self, context):
-        pass
+        return {'FINISHED'}
 
 
 class NORMALCAMERA_PT_Panel(bpy.types.Panel):
@@ -34,12 +34,15 @@ class NORMALCAMERA_PT_Panel(bpy.types.Panel):
 
     def draw(self, context):
         layout = self.layout
+        layout.operator("render.camera_facing_normal", text="Render", icon='RENDER_STILL')
 
 def register():
     bpy.utils.register_class(NORMALCAMERA_PT_Panel)
+    bpy.utils.register_class(RENDER_OT_CameraFacingNormal)
 
 def unregister():
     bpy.utils.unregister_class(NORMALCAMERA_PT_Panel)
+    bpy.utils.unregister_class(RENDER_OT_CameraFacingNormal)
 
 if __name__ == "__main__":
     register()
