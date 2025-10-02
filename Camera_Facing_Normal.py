@@ -22,7 +22,9 @@ class RENDER_OT_CameraFacingNormal(bpy.types.Operator):
         return context.space_data.type == 'VIEW_3D' and context.scene is not None
 
     def execute(self, context):
-        # Check if camera is orthographic which prevents a gradient on the normal map
+        camera = context.scene.camera
+        if  camera and camera.data.type != 'ORTHO':
+            self.report({'WARNING'}, "Using non orthographic camera will lead to a gradient on the normal map")
         context.scene.render.engine = 'BLENDER_WORKBENCH'
         context.scene.display.shading.light = 'MATCAP'
         bpy.context.scene.display.shading.studio_light = 'check_normal+y.exr'
@@ -30,11 +32,7 @@ class RENDER_OT_CameraFacingNormal(bpy.types.Operator):
         bpy.context.scene.display.shading.single_color = (1, 1, 1)
         bpy.ops.render.render('INVOKE_DEFAULT')
         bpy.context.scene.view_settings.view_transform = 'Standard'
-        # bpy.context.scene.world.color = (0.2, 0.2, 1.0)
-        world = bpy.context.scene.world
-        world.use_nodes = True
-        bg = world.node_tree.nodes["Background"]
-        bg.inputs[0].default_value = (0.2, 0.2, 1.0, 1.0)
+        bpy.context.scene.world.color = (0.21423, 0.21423, 0.99902)
         return {'FINISHED'}
 
 
