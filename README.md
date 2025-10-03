@@ -1,20 +1,42 @@
-This is a Blender 4.5 addon developed to render the normal and the opacity maps towards the camera.
-Rendering images of 3D objects is useful for background objects or stationary objects due to the reduced draw call.
-Coupled the image with a normal map can add 
+# Camera Facing Normal (Blender 4.5 Addon)
 
-The workflow is based off of this youtube video:
-https://www.youtube.com/watch?v=yDJaSF4B138
+This Blender 4.5 addon renders **normal maps** and **opacity maps** from the camera’s perspective.  
+Rendering objects to images is useful for background or stationary objects because it reduces draw calls. Pairing the rendered image with a normal map can add depth and surface detail without needing a full 3D mesh.  
 
-Installation:
+The workflow is based on this YouTube video:  
+[https://www.youtube.com/watch?v=yDJaSF4B138](https://www.youtube.com/watch?v=yDJaSF4B138)  
 
-1. Download the "Camera_Facing_Normal.py" from this github repository
-2. In Blender, go to "Edit > Preferences... > v > Install From Disk"
-3. Find the Camera_Facing_Normal.py from File Manager
-4. When "Camera Facing Normal" appears in the addon list, the addon has be successfully installed
+---
 
-To use this addon:
+## 🚀 Installation
 
-1. Set up your object and camera in 3D space
-2. Have the camera in orthographic else a gradient will appear in the normal render
-3. The Panel "Camera Facing Normal" will be in the panel of the 3D view port
-4. There will be buttons to either "Render Normal" or "Render Opacity"
+1. Download the file `Camera_Facing_Normal.py` from this repository.  
+2. In Blender, go to:  
+   `Edit > Preferences... > Add-ons > Install from Disk...`  
+3. Locate and select the `Camera_Facing_Normal.py` file in the file browser.  
+4. Enable the **Camera Facing Normal** addon from the Add-ons list. Once it appears and has a checkmark, it is installed and active.  
+
+---
+
+## 🛠️ Usage
+
+1. Set up your object and camera in 3D space.  
+2. Switch the camera to **Orthographic** mode — otherwise, a gradient will appear in the normal render.  
+3. Open the **Camera Facing Normal** panel in the **3D Viewport sidebar** (N-panel).  
+4. Use the buttons provided:  
+   - **Render Normal** — exports a camera-facing normal map image.  
+   - **Render Opacity** — exports the opacity (alpha) map image.  
+
+---
+
+## 📷 Example
+
+_Add a screenshot or GIF here showing a rendered normal map and the resulting combined sprite/texture._  
+
+---
+
+## 📌 Notes
+
+- Built and tested for **Blender 4.5**.  
+- Best suited for background or static objects to reduce draw calls.  
+- Use orthographic camera to avoid unwanted gradients in the normal map.  
