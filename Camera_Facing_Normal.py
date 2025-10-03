@@ -45,7 +45,28 @@ class RENDER_OT_CameraFacingOpacity(bpy.types.Operator):
         return context.scene is not None and context.space_data.type == 'VIEW_3D'
     
     def execute(self, context):
-        pass
+        bpy.context.scene.render.engine = 'BLENDER_WORKBENCH'
+        bpy.context.scene.display.shading.color_type = 'MATERIAL'
+        bpy.context.scene.world.color = (0, 0, 0)
+        bpy.context.scene.display.shading.light = 'FLAT'
+        material = bpy.data.materials.new(name="WhiteMaterial")
+        material.use_nodes = True
+        shader = material.node_tree.nodes.get('Principled BSDF')
+        if shader:
+            shader.inputs['Base Color'].default_value = (1, 1, 1, 1)
+        
+        for obj in bpy.context.selected_objects:
+            if obj.type == 'MESH':
+                if obj.data.materials:
+                    obj.data.materials[0] = material
+                else:
+                    obj.data.materials.append(material)
+
+        bpy.ops.render.render('INVOKE_DEFAULT')
+        bpy.context.scene.view_settings.view_transform = 'Standard'
+        return {'FINISHED'}
+        
+
 
 
 class NORMALCAMERA_PT_Panel(bpy.types.Panel):
