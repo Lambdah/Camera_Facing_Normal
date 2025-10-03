@@ -49,7 +49,10 @@ class RENDER_OT_CameraFacingOpacity(bpy.types.Operator):
         bpy.context.scene.display.shading.color_type = 'MATERIAL'
         bpy.context.scene.world.color = (0, 0, 0)
         bpy.context.scene.display.shading.light = 'FLAT'
-        material = bpy.data.materials.new(name="WhiteMaterial")
+        material_key = "WhiteMaterialForOpacityMap"
+        if material_key not in bpy.data.materials:
+            bpy.data.materials.new(name="WhiteMaterialForOpacityMap")
+        material = bpy.data.materials[material_key]
         material.use_nodes = True
         shader = material.node_tree.nodes.get('Principled BSDF')
         if shader:
