@@ -26,9 +26,3 @@ The workflow is based on this YouTube video:
 4. Use the buttons provided:  
    - **Render Normal** — exports a camera-facing normal map image.  
    - **Render Opacity** — exports the opacity (alpha) map image.  
-
-## 📌 Notes
-
-- Built and tested for **Blender 4.5**.  
-- Best suited for background or static objects to reduce draw calls.  
-- Use orthographic camera to avoid unwanted gradients in the normal map.  
