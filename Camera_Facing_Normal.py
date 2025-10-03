@@ -19,7 +19,7 @@ class RENDER_OT_CameraFacingNormal(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.space_data.type == 'VIEW_3D' and context.scene is not None
+        return context.scene is not None and context.space_data.type == 'VIEW_3D'
 
     def execute(self, context):
         camera = context.scene.camera
@@ -34,6 +34,18 @@ class RENDER_OT_CameraFacingNormal(bpy.types.Operator):
         bpy.context.scene.view_settings.view_transform = 'Standard'
         bpy.context.scene.world.color = (0.21423, 0.21423, 0.99902)
         return {'FINISHED'}
+    
+class RENDER_OT_CameraFacingOpacity(bpy.types.Operator):
+    bl_label = "Render the opacity map facing the camera"
+    bl_idname = "render.camera_facing_opacity"
+    bl_options = {'REGISTER', 'UNDO'}
+
+    @classmethod
+    def poll(cls, context):
+        return context.scene is not None and context.space_data.type == 'VIEW_3D'
+    
+    def execute(self, context):
+        pass
 
 
 class NORMALCAMERA_PT_Panel(bpy.types.Panel):
@@ -45,15 +57,22 @@ class NORMALCAMERA_PT_Panel(bpy.types.Panel):
 
     def draw(self, context):
         layout = self.layout
-        layout.operator("render.camera_facing_normal", text="Render", icon='RENDER_STILL')
+        layout.operator("render.camera_facing_normal", text="Render Normal", icon='RENDER_STILL')
+        row = layout.row()
+        layout.operator("render.camera_facing_opacity", text="Render Opacity", icon='COLORSET_10_VEC')
+
+
+
 
 def register():
     bpy.utils.register_class(NORMALCAMERA_PT_Panel)
     bpy.utils.register_class(RENDER_OT_CameraFacingNormal)
+    bpy.utils.register_class(RENDER_OT_CameraFacingOpacity)
 
 def unregister():
     bpy.utils.unregister_class(NORMALCAMERA_PT_Panel)
     bpy.utils.unregister_class(RENDER_OT_CameraFacingNormal)
+    bpy.utils.unregister_class(RENDER_OT_CameraFacingOpacity)
 
 if __name__ == "__main__":
     register()
