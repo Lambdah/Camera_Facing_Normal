@@ -78,7 +78,7 @@ class NORMALCAMERA_PT_Panel(bpy.types.Panel):
 
     def draw(self, context):
         layout = self.layout
-        layout.operator("render.camera_facing_normal", text="Render Normal", icon='RENDER_STILL')
+        layout.operator("render.camera_facing_normal", text="Render Normal", icon='COLORSET_04_VEC')
         row = layout.row()
         layout.operator("render.camera_facing_opacity", text="Render Opacity", icon='COLORSET_10_VEC')
 
