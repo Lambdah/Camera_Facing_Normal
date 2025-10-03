@@ -27,14 +27,6 @@ The workflow is based on this YouTube video:
    - **Render Normal** — exports a camera-facing normal map image.  
    - **Render Opacity** — exports the opacity (alpha) map image.  
 
----
-
-## 📷 Example
-
-_Add a screenshot or GIF here showing a rendered normal map and the resulting combined sprite/texture._  
-
----
-
 ## 📌 Notes
 
 - Built and tested for **Blender 4.5**.  
